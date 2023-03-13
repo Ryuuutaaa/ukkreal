@@ -43,13 +43,46 @@ class Admin extends Controller
     {
         $data = [
             'title' => 'admin kelas',
-            'getAllKelas' => $this->model("Kelas_model")->getAllKelas(),
+            'kelas' => $this->model("Kelas_model")->getAllKelas(),
             'tbl' => 'Table kelas',
         ];
 
         $this->view("templates/header", $data);
         $this->view("admin/kelas/index", $data);
         $this->view("templates/footer");
+    }
+
+    public function tambahKelas()
+    {
+        $data = [
+            'title' => 'tambah kelas',
+        ];
+
+        $this->view("templates/header");
+        $this->view("admin/kelas/add");
+        $this->view("templates/footer");
+    }
+
+    public function tambahKelasAct()
+    {
+        if($this->model("Kelas_model")->tambahKelas($_POST) > 0){
+            Flasher::setFlash("success", "Siswa berhasil ditambah");
+            Redirect::to("/admin/kelas");
+        }else{
+            Flasher::setFlash("danger", "Siswa gagal Ditambah");
+            Redirect::to("/admin/tambahKelas");
+        }
+    }
+
+    public function hapusKelas()
+    {
+        if($this->model("Kelas_model")->hapusKelas($_POST) > 0){
+            Flasher::setFlash("success", "Data berhasil dihapus");
+            Redirect::to("/admin/kelas");
+        }else{
+            Flasher::setFlash("danger", "Data gagal dihapus");
+            Redirect::to("/admin/kelas");
+        }
     }
     // end
     
@@ -61,12 +94,26 @@ class Admin extends Controller
         $data = [
             'title' => 'admin siswa',
             'tbl' => 'Table siswa',
+            'getAllSiswa' => $this->model("User_model")->getAllSiswa(),  
         ];
 
         $this->view("templates/header", $data);
         $this->view("admin/siswa/index", $data);
         $this->view("templates/footer");
     }
+
+    public function tambahSiswa()
+    {
+        $data = [
+            'title' => 'tambah siswa',
+        ];
+
+        $this->view("templates/header", $data);
+        $this->view("admin/siswa/add", $data);
+        $this->view("templates/footer");
+    }
+
+   
     // End
 
 
@@ -83,6 +130,39 @@ class Admin extends Controller
         $this->view("templates/header", $data);
         $this->view("admin/pengguna/index", $data);
         $this->view("templates/footer");
+    }
+
+    public function tambahPengguna()
+    {
+        $data = [
+            'title' => 'admin pengguna',
+        ];
+
+        $this->view("templates/header", $data);
+        $this->view("admin/pengguna/add", $data);
+        $this->view("templates/footer");
+    }
+
+    public function tambahPenggunaAct()
+    {
+        if($this->model("User_model")->tambahPengguna($_POST) > 0){
+            Flasher::setFlash("success", "Pengguna berhasil ditambahkan");
+            Redirect::to("/admin/pengguna");
+        }else{
+            Flasher::setFlash("danger", "Pengguna gagal ditambahkan");
+            Redirect::to("/admin/tambahPengguna");
+        }
+    }
+
+    public function hapusPengguna()
+    {
+        if($this->model("User_model")->deletePengguna($_POST) > 0){
+            Flasher::setFlash("success", "Data berhasil dihapus");
+            Redirect::to("/admin/kelas");
+        }else{
+            Flasher::setFlash("danger", "Data gagal dihapus");
+            Redirect::to("/admin/kelas");
+        }
     }
     // End 
 

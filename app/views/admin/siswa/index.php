@@ -39,34 +39,68 @@
                             href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
                     <!-- DataTales Example -->
+                    <a href="" class="btn btn-success my-3">Tambah Siswa</a>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>No</th>
+                                            <th>NISN</th>
+                                            <th>NIS</th>
+                                            <th>Nama</th>
+                                            <th>Alamat</th>
+                                            <th>Telepon</th>
+                                            <th>Kelas</th>
+                                            <th>Id Pengguna</th>
+                                            <th>Pembayaran</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                        <tr> 
+                                            <th>No</th>
+                                            <th>NISN</th>
+                                            <th>NIS</th>
+                                            <th>Nama</th>
+                                            <th>Alamat</th>
+                                            <th>Telepon</th>
+                                            <th>Kelas</th>
+                                            <th>Id Pengguna</th>
+                                            <th>Pembayaran</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        <?php $i = 1; ?>
+                                        <?php foreach($data['getAllSiswa'] as $siswa): ?>
+                                        <tr>
+                                            <td><?= $i ?></td>
+                                            <td><?= $siswa['nisn']?></td>
+                                            <td><?= $siswa['nis']?></td>
+                                            <td><?= $siswa['nama']?></td>
+                                            <td><?= $siswa['alamat']?></td>
+                                            <td><?= $siswa['telepon']?></td>
+                                            <td><?= $siswa['kelas_id']?></td>
+                                            <td><?= $siswa['pengguna_id']?></td>
+                                            <td><?= $siswa['pembayaran_id']?></td>
+                                            <td>
+                                                <a href="" class="btn btn-warning">Edit</a>
+                                                <form action="<?= BURL ?>/admin/deleteSiswaAct" method="POST" class="d-inline">
+                                                    <input type="hidden" name="id" value="<?= $siswa['id_siswa'] ?>">
+                                                    <input type="hidden" name="pengguna_id" value="<?= $siswa['pengguna_id'] ?>">
+                                                    <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $siswa['nama']?>?')" type="submit">Delete</button> 
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <?php $i++ ?>
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
                                         
                        </div>
 

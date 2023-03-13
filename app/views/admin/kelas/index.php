@@ -39,6 +39,8 @@
                             href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
                     <!-- DataTales Example -->
+                    <a href="<?= BURL ?>/admin/tambahKelas" class="btn btn-success my-3">Tambah Kelas</a>
+                    <?php Flasher::flash()?>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
@@ -64,14 +66,17 @@
                                     </tfoot>
                                     <tbody>
                                         <?php $i = 1; ?>
-                                        <?php foreach($data['getAllKelas'] as $kelas):  ?>
+                                        <?php foreach($data['kelas'] as $kelas):  ?>
                                         <tr>
                                             <td><?= $i ?></td>
                                             <td><?= $kelas['nama'] ?></td>
                                             <td><?= $kelas['kompetensi_keahlian'] ?></td>
                                             <td>
                                                 <a href="" class="btn btn-warning">Edit</a>
-                                                <a href="" class="btn btn-danger">Delete</a>
+                                                <form action="<?= BURL?>/admin/hapusKelas" method="POST" class="d-inline">
+                                                    <input type="hidden" name="id" value="<?= $kelas['id'] ?>">
+                                                    <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $kelas['nama']?>?')" type="submit">Delete</button> 
+                                                </form>
                                             </td>
                                         </tr>
                                         <?php $i++ ?>

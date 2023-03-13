@@ -85,7 +85,7 @@ class User_model
 
     public function deletePetugas($data)
     {
-        $query = "DELETE FROM $this->pengguna WHERE id = :id";
+        $query = "DELETE FROM $this->petugas WHERE id = :id";
         $this->db->query($query);
         $this->db->bind("id", $data['id']);
         return $this->db->rowCount();
@@ -112,6 +112,14 @@ class User_model
         $this->db->bind("username", $data['username']);
         $this->db->bind("pass", $data['pass']);
         $this->db->bind("role", $data['role']);
+        return $this->db->rowCount();
+    }
+
+    public function deletePengguna($data)
+    {
+        $query = "DELETE FROM $this->pengguna WHERE id = :id";
+        $this->db->query($query);
+        $this->db->bind("id", $data['id']);
         return $this->db->rowCount();
     }
     // End

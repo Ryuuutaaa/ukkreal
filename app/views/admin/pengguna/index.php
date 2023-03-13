@@ -77,7 +77,10 @@
                                             <td><?= $pengguna['role'] ?></td>
                                             <td>
                                                 <a href="" class="btn btn-warning">Edit</a>
-                                                <a href="" class="btn btn-danger">Delete</a>
+                                                <form action="<?= BURL ?>/admin/hapusPengguna" method="post" class="d-inline">
+                                                    <input type="hidden" name="id" value="<?= $pengguna['id'] ?>">
+                                                    <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $pengguna['username']?>?')" type="submit">Delete</button> 
+                                                </form>
                                             </td>
                                         </tr>
                                         <?php $i++ ?>
