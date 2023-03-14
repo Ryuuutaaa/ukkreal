@@ -22,7 +22,8 @@ class Kelas_model
 
     public function getAllKelas()
     {
-        $this->db->query("SELECT * FROM $this->kelas");
+        $query = "CALL almbilDataKelas()";
+        $this->db->query($query);
 
         return $this->db->resultAll();
     }
@@ -41,6 +42,16 @@ class Kelas_model
     {
         $this->db->query("DELETE FROM $this->kelas WHERE id =:id");
         $this->db->bind("id", $id['id']);
+
+        return $this->db->rowCount();
+    }
+
+    public function editKelas($data,$id)
+    {
+        $this->db->query("UPDATE $this->kelas SET  nama = :nama, kompetensi_keahlian = :kompetensi_keahlian WHERE  id = :id");
+        $this->db->bind("nama", $data['nama']);
+        $this->db->bind("kompetensi_keahlian", $data['kompetensi_keahlian']);
+        $this->db->bind("id", $id);
 
         return $this->db->rowCount();
     }

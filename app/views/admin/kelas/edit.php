@@ -41,9 +41,9 @@
                     
                     <div class="card">
                         <?php Flasher::flash() ?>
-                    <form action="<?= BURL ?>/admin/tambahKelasAct" class="p-3" method="POST">
+                    <form action="<?= BURL ?>/admin/editKelasAct" class="p-3" method="POST">
                         <div class="form-group">
-                            <label for="" class="">Nama</label>
+                            <label for="" class="">Nama Kelas</label>
                             <input type="text" class="form-control" name="nama">
                         </div>
 
@@ -52,8 +52,8 @@
                             <input type="text" class="form-control" name="kompetensi_keahlian">
                         </div>
                         <!-- <input type="hidden" value="1" id="role" name="role"> -->
-                        <button class="btn btn-primary " type="submit">Tambah <i class=" fas fa-pen mx-1"></i></button>
-                        <a href="<?= BURL ?>/admin/petugas" class="btn btn-secondary " style="margin-left: 80%;">Back</a>
+                        <button class="btn btn-primary " type="submit">Edit <i class=" fas fa-pen mx-1"></i></button>
+                        <a href="<?= BURL ?>/admin/kelas" class="btn btn-secondary " style="margin-left: 80%;">Back</a>
                     </form>
                     </div>
                     

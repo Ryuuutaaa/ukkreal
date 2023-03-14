@@ -84,6 +84,28 @@ class Admin extends Controller
             Redirect::to("/admin/kelas");
         }
     }
+
+    public function editKelas()
+    {
+        $data = [
+            'title' => 'Admin Kelas',
+        ];
+
+        $this->view("templates/header");
+        $this->view("admin/kelas/edit");
+        $this->view("templates/footer");
+    }
+
+    public function editKelasAct()
+    {
+        if($this->model("Kelas_model")->editKelas($_POST) > 0){
+            Flasher::setFlash("success", "Data berhasil diedit");
+            Redirect::to("/admin/kelas");
+        }else{
+            Flasher::setFlash("danger", "Data gagal diedit");
+            Redirect::to("/admin/tambahKelas");
+        }
+    }
     // end
     
 
@@ -220,5 +242,44 @@ class Admin extends Controller
         }
     }
     
+    // End
+
+    // Pembayaran
+    public function pembayaran(){
+        $data = [
+            'title' => "Pembayaran",
+            'section' => 'pembayaran',
+            'pembayaran' => $this->model("User_model")->getAllPembayaran(),
+            'tbl' => 'pembayaran',
+        ];
+
+        $this->view("templates/header", $data);
+        $this->view("admin/pembayaran/index", $data, $this->setFixedData());
+        $this->view("templates/footer");
+    }
+
+    public function editPembayaran($id){
+        $data = [
+            'title' => "Edit Pembayaran",
+            'section' => 'pembayaran',
+            'pembayaran' => $this->model("User_model")->getDataPembayaranById($id),
+        ];
+
+        $this->view("templates/header", $data);
+        $this->view("admin/pembayaran/edit", $data);
+        $this->view("templates/footer");
+    }
+
+    public function editPembayaranAct(){
+        if($this->model("User_model")->editPembayaran($_POST) > 0){
+            Flasher::setFlash("Pembayaran", "Berhasil Diedit", "success");
+            Redirect::to("/admin/pembayaran");
+        } else{
+            Flasher::setFlash("Pembayaran", "Gagal Diedit", "danger");
+            Redirect::to("/admin/pembayaran");
+        }
+    }
+
+
     // End
 }

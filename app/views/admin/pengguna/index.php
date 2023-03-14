@@ -76,7 +76,9 @@
                                             <td><?= $pengguna['pass'] ?></td>
                                             <td><?= $pengguna['role'] ?></td>
                                             <td>
-                                                <a href="" class="btn btn-warning">Edit</a>
+                                                <form action="">
+                                                    <a href="" class="btn btn-warning">Edit</a>
+                                                </form>
                                                 <form action="<?= BURL ?>/admin/hapusPengguna" method="post" class="d-inline">
                                                     <input type="hidden" name="id" value="<?= $pengguna['id'] ?>">
                                                     <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $pengguna['username']?>?')" type="submit">Delete</button> 

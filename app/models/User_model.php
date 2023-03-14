@@ -7,6 +7,7 @@ class User_model
     private $siswa = 'siswa';
     private $pengguna = 'pengguna';
     private $kelas = 'kelas';
+    private $pembayaran = "pembayaran";
 
     private $db;
 
@@ -123,4 +124,36 @@ class User_model
         return $this->db->rowCount();
     }
     // End
+    
+    public function getAllPembayaran(){
+        $this->db->query("SELECT * FROM $this->pembayaran");
+        return $this->db->resultAll();
+    }
+
+    public function getDataPembayaranById($id){
+        $this->db->query("SELECT * FROM $this->pembayaran WHERE id = :id");
+        $this->db->bind("id", $id);
+        return $this->db->result();
+    }
+
+    public function tambahPembayaran($data){
+        $this->db->query("INSERT INTO $this->pembayaran VALUES(NULL, :tahun_ajaran, :nominal)");
+        $this->db->bind("tahun_ajaran", $data['tahun_ajaran']);
+        $this->db->bind("nominal", $data['nominal']);
+        return $this->db->rowCount();
+    }
+
+    public function editPembayaran($data){
+        $this->db->query("UPDATE $this->pembayaran SET tahun_ajaran = :tahun_ajaran, nominal = :nominal WHERE id = :id");
+        $this->db->bind("tahun_ajaran", $data['tahun_ajaran']);
+        $this->db->bind("nominal", $data['nominal']);
+        $this->db->bind("id", $data['id']);
+        return $this->db->rowCount();
+    }
+
+    public function deletePembayaran($data){
+        $this->db->query("DELETE FROM $this->pembayaran WHERE id = :id");
+        $this->db->bind("id", $data['id']);
+        return $this->db->rowCount();
+    }
 }

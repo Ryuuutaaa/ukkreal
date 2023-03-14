@@ -72,7 +72,10 @@
                                             <td><?= $kelas['nama'] ?></td>
                                             <td><?= $kelas['kompetensi_keahlian'] ?></td>
                                             <td>
-                                                <a href="" class="btn btn-warning">Edit</a>
+                                                <form action="" class="d-inline">
+                                                    <input type="hidden" name="id" value="<?= $kelas['id'] ?>">
+                                                    <a href="<?= BURL ?>/admin/editKelas" class="btn btn-warning">Edit</a>
+                                                </form>
                                                 <form action="<?= BURL?>/admin/hapusKelas" method="POST" class="d-inline">
                                                     <input type="hidden" name="id" value="<?= $kelas['id'] ?>">
                                                     <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus <?= $kelas['nama']?>?')" type="submit">Delete</button> 
